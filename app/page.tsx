@@ -8,6 +8,7 @@ import { CompetitorAnalysis } from '@/components/dashboard/competitor-analysis';
 import { TopDiscounts } from '@/components/dashboard/top-discounts';
 import { AlertPanel } from '@/components/dashboard/alert-panel';
 import { PriceChart3D } from '@/components/dashboard/price-chart-3d';
+import { AccommodationSearchPanel } from '@/components/accommodation/search-panel';
 import { motion } from 'framer-motion';
 
 export default function Home() {
@@ -80,6 +81,17 @@ export default function Home() {
         </motion.div>
 
         <AnimatedMetrics metrics={analyticsData?.overview || {}} />
+
+        {/* 숙소 크롤링 섹션 추가 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="mb-8"
+        >
+          <h2 className="text-xl font-semibold text-white mb-4">🔎 AI 숙소 크롤링 (MCP Server)</h2>
+          <AccommodationSearchPanel />
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <motion.div
