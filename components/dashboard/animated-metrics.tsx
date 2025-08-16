@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { TrendingUp, TrendingDown, Package, AlertCircle, DollarSign, BarChart3 } from 'lucide-react';
+import { TrendingUp, TrendingDown, Package, AlertCircle, BarChart3 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
 interface MetricCardProps {
@@ -12,7 +12,14 @@ interface MetricCardProps {
   delay?: number;
 }
 
-export function AnimatedMetrics({ metrics }: { metrics: any }) {
+interface Metrics {
+  totalProducts?: number;
+  avgPriceChange?: number;
+  newProducts?: number;
+  priceAlerts?: number;
+}
+
+export function AnimatedMetrics({ metrics }: { metrics: Metrics }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <MetricCard

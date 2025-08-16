@@ -37,7 +37,14 @@ export function PriceChart3D({ data }: { data: DataPoint[] }) {
   );
 }
 
-function DataBar({ position, height, color, label }: any) {
+interface DataBarProps {
+  position: [number, number, number];
+  height: number;
+  color: string;
+  label: string;
+}
+
+function DataBar({ position, height, color, label }: DataBarProps) {
   const meshRef = useRef<THREE.Mesh>(null);
 
   return (

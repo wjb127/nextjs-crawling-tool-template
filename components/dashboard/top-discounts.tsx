@@ -5,7 +5,16 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingDown, ExternalLink } from 'lucide-react';
 
-export function TopDiscounts({ discounts }: { discounts: any[] }) {
+interface Discount {
+  id: string;
+  productName: string;
+  originalPrice: number;
+  currentPrice: number;
+  discountRate: number;
+  competitor: string;
+}
+
+export function TopDiscounts({ discounts }: { discounts: Discount[] }) {
   return (
     <Card className="p-6 bg-gradient-to-br from-gray-900 to-gray-800">
       <div className="flex items-center justify-between mb-4">

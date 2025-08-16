@@ -11,7 +11,19 @@ import { PriceChart3D } from '@/components/dashboard/price-chart-3d';
 import { motion } from 'framer-motion';
 
 export default function Home() {
-  const [analyticsData, setAnalyticsData] = useState<any>(null);
+  const [analyticsData, setAnalyticsData] = useState<{
+    overview?: {
+      totalProducts?: number;
+      avgPriceChange?: number;
+      newProducts?: number;
+      priceAlerts?: number;
+    };
+    priceHistory?: Array<{ date: string; avgPrice: number; minPrice: number; maxPrice: number }>;
+    categoryDistribution?: Array<{ name: string; value: number; color: string }>;
+    competitorComparison?: Array<{ name: string; avgPrice: number; products: number }>;
+    topDiscounts?: Array<{ id: string; productName: string; originalPrice: number; currentPrice: number; discountRate: number; competitor: string }>;
+    recentAlerts?: Array<{ id: string; type: string; message: string; productName: string; timestamp: string }>;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

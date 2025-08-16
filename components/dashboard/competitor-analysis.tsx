@@ -30,13 +30,19 @@ ChartJS.register(
   Filler
 );
 
-export function CompetitorAnalysis({ data }: { data: any }) {
+interface AnalyticsData {
+  priceHistory?: Array<{ date: string; avgPrice: number; minPrice: number; maxPrice: number }>;
+  categoryDistribution?: Array<{ name: string; value: number; color: string }>;
+  competitorComparison?: Array<{ name: string; avgPrice: number; products: number }>;
+}
+
+export function CompetitorAnalysis({ data }: { data: AnalyticsData | null }) {
   const priceHistoryData = {
-    labels: data?.priceHistory?.map((d: any) => d.date.split('-').slice(1).join('/')) || [],
+    labels: data?.priceHistory?.map((d) => d.date.split('-').slice(1).join('/')) || [],
     datasets: [
       {
         label: '평균가격',
-        data: data?.priceHistory?.map((d: any) => d.avgPrice) || [],
+        data: data?.priceHistory?.map((d) => d.avgPrice) || [],
         borderColor: 'rgb(59, 130, 246)',
         backgroundColor: 'rgba(59, 130, 246, 0.1)',
         fill: true,
@@ -44,7 +50,7 @@ export function CompetitorAnalysis({ data }: { data: any }) {
       },
       {
         label: '최저가격',
-        data: data?.priceHistory?.map((d: any) => d.minPrice) || [],
+        data: data?.priceHistory?.map((d) => d.minPrice) || [],
         borderColor: 'rgb(34, 197, 94)',
         backgroundColor: 'rgba(34, 197, 94, 0.1)',
         fill: true,
@@ -52,7 +58,7 @@ export function CompetitorAnalysis({ data }: { data: any }) {
       },
       {
         label: '최고가격',
-        data: data?.priceHistory?.map((d: any) => d.maxPrice) || [],
+        data: data?.priceHistory?.map((d) => d.maxPrice) || [],
         borderColor: 'rgb(239, 68, 68)',
         backgroundColor: 'rgba(239, 68, 68, 0.1)',
         fill: true,
@@ -62,11 +68,11 @@ export function CompetitorAnalysis({ data }: { data: any }) {
   };
 
   const competitorComparisonData = {
-    labels: data?.competitorComparison?.map((d: any) => d.name) || [],
+    labels: data?.competitorComparison?.map((d) => d.name) || [],
     datasets: [
       {
         label: '평균 가격',
-        data: data?.competitorComparison?.map((d: any) => d.avgPrice) || [],
+        data: data?.competitorComparison?.map((d) => d.avgPrice) || [],
         backgroundColor: [
           'rgba(59, 130, 246, 0.8)',
           'rgba(139, 92, 246, 0.8)',
@@ -79,11 +85,11 @@ export function CompetitorAnalysis({ data }: { data: any }) {
   };
 
   const categoryData = {
-    labels: data?.categoryDistribution?.map((d: any) => d.name) || [],
+    labels: data?.categoryDistribution?.map((d) => d.name) || [],
     datasets: [
       {
-        data: data?.categoryDistribution?.map((d: any) => d.value) || [],
-        backgroundColor: data?.categoryDistribution?.map((d: any) => d.color) || [],
+        data: data?.categoryDistribution?.map((d) => d.value) || [],
+        backgroundColor: data?.categoryDistribution?.map((d) => d.color) || [],
         borderWidth: 0
       }
     ]

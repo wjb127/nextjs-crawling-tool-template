@@ -3,7 +3,8 @@ import { createClient } from '@/lib/supabase/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { url, type } = await request.json();
+    // const { url, type } = await request.json();
+    await request.json();
     const supabase = await createClient();
 
     // Mock 데이터 생성 (실제 크롤링 대신)

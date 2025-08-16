@@ -25,7 +25,15 @@ const alertColors = {
   review_alert: 'bg-purple-500/10 text-purple-500 border-purple-500/20'
 };
 
-export function AlertPanel({ alerts }: { alerts: any[] }) {
+interface Alert {
+  id: string;
+  type: string;
+  message: string;
+  productName: string;
+  timestamp: string;
+}
+
+export function AlertPanel({ alerts }: { alerts: Alert[] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
